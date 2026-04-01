@@ -1,0 +1,50 @@
+A virtual environment (venv) is an isolated Python workspace where you can install packages specific to a project without affecting:
+
+The system-wide Python installation
+Other projects
+OS dependencies (important for Linux/AIX servers)
+
+Think of it like a sandbox for your project.
+
+Why Is a Virtual Environment Important?
+✔ 1. Avoids Package Conflicts
+Different projects may need different versions of the same Python library.
+Example:
+
+Script A needs paramiko 3.x
+Script B needs paramiko 2.x
+
+A virtual environment keeps them separate.
+
+✔ 2. Protects System Python
+Linux & AIX rely on system Python for internal tools.
+If you install or update packages globally using pip, you can break OS-level utilities.
+Using venv ensures system Python remains untouched.
+
+✔ 3. Cleaner Project Management
+Every automation script/project has its own dependencies, documented in:
+requirements.txt
+
+This makes your automation easy to:
+
+Reproduce
+Share
+Deploy
+
+
+✔ 4. Safe for Servers
+On production servers, you usually don't want to install libraries globally.
+Virtual environments let you deploy Python automation without risk.
+
+### How to crate virtual enviornement 
+
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install paramiko
+pip install psutil
+pip freeze > requirements.txt
+
+python healthcheck.py
+deactivate
